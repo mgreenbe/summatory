@@ -1,0 +1,20 @@
+<div>
+  <p>List some metasyntactic variables.</p>
+  <FormGroup controlId='"my-control"' {{#if value}}validationState='"success"'{{/if}}>
+  <ControlLabel>Metasyntactic variable</ControlLabel>
+  <BsFormControl bsSize='"lg"' path='["value"]' placeholder='"Type something..."' />
+  <FormControl.Feedback />
+  <HelpBlock>Type something, them click 'PUSH'.</HelpBlock>
+  </FormGroup>
+  <BsButton {{#unless value}}disabled='true' {{/unless}}actions='[["PUSH", ["list"], "{{value}}"],
+  ["CHANGE", ["value"], ""]]'>PUSH</BsButton>
+  <ol>
+    {{#each list}}
+      <li>{{this}}</li>
+    {{/each}}
+  </ol>
+  <FormGroup controlId='"my-other-control"'>
+    <ControlLabel>Static content</ControlLabel>
+    <FormControl.Static>This is static content</FormControl.Static>
+  </FormGroup>
+</div>

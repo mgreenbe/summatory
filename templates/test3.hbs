@@ -1,0 +1,14 @@
+<div>
+  <p>Which fruit is best?</p>
+  <Input key='1' disabled='{{disabled}}' type='"radio"' path='["selected"]' value='"apple"' />
+    Apple <br />
+  <Input key='2' disabled='{{disabled}}' type='"radio"' path='["selected"]' value='"orange"' />
+    Orange <br />
+  <Input key='3' disabled='{{disabled}}' type='"radio"' path='["selected"]' value='"banana"' />
+    Banana <br />
+  <p><Button disabled='{{disabled}}' actions='[["SUBMIT"]]'>SUBMIT</Button>
+     <Button actions='[["CLEAR"]]'>CLEAR</Button></p>
+  {{#if disabled}}
+    <p style='{"color": "{{color}}"}'>{{message}}</p>
+  {{/if}}
+</div>
