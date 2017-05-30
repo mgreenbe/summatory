@@ -4,8 +4,8 @@ import p1 from './p1.js';
 
 const App = (props) => {
   return (
-    <div>
-      <h1>Test</h1>
+    <div style={{padding: '20px'}}>
+      <Problem url="/api" problem={p1}></Problem>
       <Problem url="/api" problem={p1}></Problem>
     </div>
   )

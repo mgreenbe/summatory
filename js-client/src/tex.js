@@ -14,7 +14,9 @@ class TeX extends React.Component {
   } // need this for fields to update!
   componentDidMount() {
     const displayMode = !!this.props.displayMode;
-    katex.render(this.props.children, this.elt, {displayMode});
+    if (this.props.children && this.elt) {
+      katex.render(this.props.children, this.elt, {displayMode});
+    }
     /*const tex = this.props.children;
         if (typeof tex === 'string') {
       const elt = this.elt;

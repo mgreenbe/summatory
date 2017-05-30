@@ -8,26 +8,28 @@ class Problem extends React.Component {
     this.state = {};
   }
   componentDidMount() {
-    if (this.props.url) {
     const setState = this.setState.bind(this);
-    fetch(this.props.url)
+    fetch(`${this.props.url}/${this.props.problem.name}`)
       .then(function(response) {return response.json()})
       .then(function(body) {setState(body)})
-    }
   }
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value});
   }
   handleSubmit(event) {
-    console.log(this.state);
+    event.preventDefault();
+    const setState = this.setState.bind(this);
     const headers = new Headers({
       'Content-Type': 'application/json'
     });
-    const init = {method: 'POST',
+    const init = {
+      method: 'POST',
       headers,
       body: JSON.stringify(this.state)
     };
     fetch(this.props.url, init)
+      .then( response => response.json() )
+      .then( json => setState(json) )
   }
   render() {
     const P = this.props.problem;

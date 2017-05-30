@@ -1,26 +1,28 @@
 from copy import deepcopy
 from flask import Flask, jsonify, request
-import sys
 import json
 
 import sympy
 
 app = Flask(__name__)
 
-@app.route('/api', methods=['GET'])
-def get():
-  A = sympy.Matrix([[1,2],[0,1]])
-  B = sympy.Matrix([[1], [1]])
-  response = jsonify({'A': sympy.latex(A), 'B': sympy.latex(b)})
-  return response;
+def update_context(id_, context=None):
+    source = open('problems/%s.py' % id_).read()
+    locs = locals()
+    exec(source)
+    update = locs.get('update')
+    return update(context)
+
+@app.route('/api/<id_>', methods=['GET'])
+def get(id_):
+  initial_context = update_context(id_)
+  return jsonify(initial_context)
 
 @app.route('/api', methods=['POST'])
 def post():
-  print(request.is_json)
-  print(request.get_json())
-  return "Message received!"
-
-
+    context = request.get_json()
+    new_context = update_context('p1', context)
+    return jsonify(new_context)
 
 if __name__ == '__main__':
     app.run()
