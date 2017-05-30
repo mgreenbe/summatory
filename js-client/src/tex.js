@@ -3,7 +3,7 @@ import 'katex/dist/katex.min.css';
 import React from 'react';
 
 class TeX extends React.Component {
-  /*  componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps) {
     if (nextProps.children !== this.props.children && !!(this.elt)) {
       katex.render(
         nextProps.children,
@@ -11,7 +11,7 @@ class TeX extends React.Component {
         {displayMode: nextProps.displayMode}
       );
     }
-  }*/
+  } // need this for fields to update!
   componentDidMount() {
     const displayMode = !!this.props.displayMode;
     katex.render(this.props.children, this.elt, {displayMode});
