@@ -10,11 +10,11 @@ const p1 = ({context, handleChange, handleSubmit}) => {
     + '\\begin{bmatrix}x\\\\y\\end{bmatrix}='
     + context.B;
   return (
-    <Panel>
+    <Panel style={{width: 300}}>
+      <p>Solve the system:
+        <TeX>{equation}</TeX>
+      </p>
       <Form inline onSubmit={handleSubmit}>
-        <p>Solve the system:
-          <TeX>{equation}</TeX>
-        </p>
         <FormGroup bsSize='small' controlId='x'>
           <ControlLabel><TeX>x=</TeX></ControlLabel>{' '}
           <FormControl
