@@ -3,7 +3,7 @@ import Problem from './problem.js';
 import p1 from './p1.js';
 import FormWrapper from './my-form.js';
 import TeX from './tex.js';
-
+import Matrix from './matrix.js';
 const Form = function(props) {
   const {Input, Button} = this;
   return <div>
@@ -14,12 +14,35 @@ const Form = function(props) {
   </div>
 }
 
-const App = function(props) {
-  return <div style={{padding: '20px'}}>
-    <Problem url="/api" problem={p1}></Problem>
-    <Problem url="/api" problem={p1}></Problem>
-    <FormWrapper Form={Form} />
-  </div>
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: [[0, 1, 1], [2, 3, 5]]};
+    this.clickHandler = this.clickHandler.bind(this);
+  }
+  setEntry(matrix, i, j, value) {
+    const newRowi = [...matrix[i]];
+    newRowi[j] = value;
+    const newMatrix = [...matrix]
+    newMatrix[i] = newRowi
+    return newMatrix;
+  }
+  clickHandler() {
+    console.log("Clicked!");
+    const newState = this.setEntry(this.state.value, 0, 0, 7);
+    console.log(newState);
+    this.setState({value: newState});
+  }
+  render() {
+    return <div style={{padding: '20px'}}>
+      <Problem url="/api" problem={p1}></Problem>
+      <Problem url="/api" problem={p1}></Problem>
+      <FormWrapper Form={Form} />
+      <br /><br /><Matrix value={this.state.value} />
+    </div>
+  }
 }
+
+
 
 export default App;
